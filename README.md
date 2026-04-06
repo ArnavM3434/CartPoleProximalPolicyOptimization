@@ -95,7 +95,7 @@ Default behavior uses **greedy** actions (argmax). Add **`--stochastic`** to sam
 
 Rough count: number of outer PPO updates ≈ **`ceil(total-timesteps / num-steps)`**. Optimizer steps per update ≈ **`num-epochs × ceil(rollout_length / minibatch-size)`**.
 
-## What you typically see
+## Observations
 
 ### Episode return
 
