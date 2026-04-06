@@ -98,14 +98,15 @@ Rough count: number of outer PPO updates ≈ **`ceil(total-timesteps / num-steps
 ## Observations
 
 ### Episode return
+<img width="794" height="656" alt="Screenshot 2026-04-05 at 8 34 41 PM" src="https://github.com/user-attachments/assets/91e99d93-2267-4462-9a5d-275cebec5795" />
 
-CartPole-v1 gives **+1 reward per timestep** until failure or **time limit**. The maximum return in a single episode is therefore **500** when the pole stays balanced for the full **500-step** horizon (truncation). In practice, a good run’s **recent episode returns** and **moving average** climb toward that cap; the classic “solved” benchmark is often quoted as **average return ≥ 475 over 100 episodes**, but **500** is the hard ceiling for a single episode under the default time limit.
+CartPole-v1 gives **+1 reward per timestep** until failure or **time limit**. The maximum return in a single episode is therefore **500** when the pole stays balanced for the full **500-step** horizon (truncation). 
 
 Early training often shows **short episodes** (returns on the order of tens); as the policy improves, returns **increase sharply** into the hundreds.
 
 ### Entropy
 
-For two actions, the **maximum** categorical entropy is **log 2 ≈ 0.693** nats (uniform random left/right). As the policy becomes **more confident**, entropy **decreases** toward **0** (nearly deterministic). The **`ent_coef`** term slows premature collapse; if entropy drops too fast while return is still poor, slightly **increasing `ent_coef`** can help exploration (at the risk of slower convergence).
+For two actions, the **maximum** categorical entropy is **log 2 ≈ 0.693** nats (uniform random left/right). As the policy becomes **more confident**, entropy **decreases** toward **0** (nearly deterministic). Shown in the plots. The **`ent_coef`** term slows premature collapse; if entropy drops too fast while return is still poor, slightly **increasing `ent_coef`** can help exploration (at the risk of slower convergence).
 
 ### Policy loss and approximate KL
 
@@ -124,5 +125,4 @@ The logged **policy loss** is the **negative** clipped surrogate (what gets adde
 | `eval_cartpole.py` | Load checkpoint, `render_mode="human"`. |
 | `requirements.txt` | PyTorch, Gymnasium (classic control), Matplotlib, NumPy. |
 
-`plots/` and `checkpoints/` are listed in `.gitignore` by default.
 
