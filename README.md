@@ -13,7 +13,7 @@ Both networks use **orthogonal weight initialization** and **zero biases** (`lay
 
 ### PPO objective
 
-- **Clipped surrogate** on the probability ratio \(r = \pi_\text{new}/\pi_\text{old}\) with **clip coefficient** ε (default `0.2`).
+- **Clipped surrogate** on the probability ratio \($r = \frac{\pi_{\text{new}}}{\pi_{\text{old}}}$) with **clip coefficient** ε (default `0.2`).
 - **Value loss**: MSE between predicted **V(s)** and **GAE targets** (returns = advantages + values).
 - **Entropy bonus** weighted by `ent_coef` to encourage exploration early in training.
 - **Gradient clipping** (norm 0.5) on the combined policy + value parameters.
