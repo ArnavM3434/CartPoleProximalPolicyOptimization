@@ -6,10 +6,10 @@ Proximal Policy Optimization **implemented from scratch** in PyTorch for [Gymnas
 
 ### Actor–critic with two networks
 
-- **Policy network (`PolicyNet`)** — MLP: 4 → 64 → 64 → 2 with ReLU. Outputs **logits** for the two discrete actions; actions are drawn from a **`Categorical`** during rollouts (`act(..., deterministic=False)` for training).
+- **Policy network (`PolicyNet`)** — MLP: 4 → 64 → 64 → 2 with ReLU. Outputs **logits** for the two discrete actions. State includes 4 numbers - cart position, cart velocity, pole angle (from vertical), and pole angular speed.
 - **Value network (`ValueNet`)** — Separate MLP: 4 → 64 → 64 → 1 with ReLU. Predicts **V(s)** for bootstrapping and the critic loss.
 
-Keeping policy and value separate matches the common “two networks” actor–critic picture and keeps the code easy to read. Both use **orthogonal weight initialization** and **zero biases** (`layer_init` in `ppo.py`) for stable early updates in RL.
+Both networks use **orthogonal weight initialization** and **zero biases** (`layer_init` in `ppo.py`) for stable early updates in RL.
 
 ### PPO objective
 
